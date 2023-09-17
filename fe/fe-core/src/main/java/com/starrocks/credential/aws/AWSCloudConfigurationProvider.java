@@ -91,6 +91,10 @@ public class AWSCloudConfigurationProvider implements CloudConfigurationProvider
             awsCloudConfiguration.setEnableSSL(Boolean.parseBoolean(properties.get(AWS_S3_ENABLE_SSL)));
         }
 
+        if (properties.containsKey(AWS_S3_CONNECTION_MAXIMUM)) {
+            awsCloudConfiguration.setMaximumConnection(String.valueOf(properties.get(AWS_S3_CONNECTION_MAXIMUM)));
+        }
+
         return awsCloudConfiguration;
     }
 }

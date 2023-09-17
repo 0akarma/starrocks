@@ -89,6 +89,9 @@ public class PaimonConnector implements Connector {
             if (!awsCloudCredential.getSecretKey().isEmpty()) {
                 paimonOptions.set("s3.secret-key", awsCloudCredential.getSecretKey());
             }
+            if (!awsCloudCredential.getMaximumConnection().isEmpty()) {
+                paimonOptions.set("fs.s3a.connection.maximum", awsCloudCredential.getMaximumConnection());
+            }
         }
     }
 

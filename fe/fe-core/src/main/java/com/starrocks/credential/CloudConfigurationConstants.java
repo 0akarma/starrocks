@@ -44,6 +44,12 @@ public class CloudConfigurationConstants {
      * Default value: [true]
      */
     public static final String AWS_S3_ENABLE_SSL = "aws.s3.enable_ssl";
+    /**
+     * Configure S3 maximum connection
+     * Useful for S3A-compliant storage providers avoiding `Timeout waiting for connection from pool` error .
+     * Default value: ["1000"]
+     */
+    public static final String AWS_S3_CONNECTION_MAXIMUM = "aws.s3.connection.maximum";
 
     public static final String AWS_GLUE_USE_AWS_SDK_DEFAULT_BEHAVIOR = "aws.glue.use_aws_sdk_default_behavior";
     public static final String AWS_GLUE_USE_INSTANCE_PROFILE = "aws.glue.use_instance_profile";

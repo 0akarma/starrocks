@@ -32,6 +32,8 @@ public class AWSCloudConfiguration extends CloudConfiguration {
 
     private boolean enableSSL = true;
 
+    private Srting maximumConnection = 1000;
+
     public AWSCloudConfiguration(AWSCloudCredential awsCloudCredential) {
         this.awsCloudCredential = awsCloudCredential;
     }
@@ -50,6 +52,14 @@ public class AWSCloudConfiguration extends CloudConfiguration {
 
     public boolean getEnableSSL() {
         return this.enableSSL;
+    }
+
+    public void setMaximumConnection(String maximumConnection) {
+        this.maximumConnection = maximumConnection;
+    }
+
+    public String getMaximumConnection() {
+        return this.maximumConnection;
     }
 
     public AWSCloudCredential getAWSCloudCredential() {
@@ -74,6 +84,10 @@ public class AWSCloudConfiguration extends CloudConfiguration {
         configuration.set("fs.s3a.retry.limit", "3");
         // Default value is 20
         configuration.set("fs.s3a.attempts.maximum", "5");
+        // Default value is 15
+        if (!Strings.isNullOrEmpty(maximumConnection)) {
+            configuration.set("fs.s3a.connection.maximum", String.valueOf(maximumConnection));
+        }
 
         configuration.set("fs.s3a.path.style.access", String.valueOf(enablePathStyleAccess));
         configuration.set("fs.s3a.connection.ssl.enabled", String.valueOf(enableSSL));
@@ -107,6 +121,7 @@ public class AWSCloudConfiguration extends CloudConfiguration {
                 ", cred=" + awsCloudCredential.toCredString() +
                 ", enablePathStyleAccess=" + enablePathStyleAccess +
                 ", enableSSL=" + enableSSL +
+                ", maximumConnection=" + maximumConnection +
                 '}';
     }
 }
